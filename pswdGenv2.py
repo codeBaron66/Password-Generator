@@ -12,6 +12,7 @@ window.geometry("520x400")
 window.option_add("*Font", "Arial 18")
 ps_length = tk.IntVar()
 specChars = tk.IntVar()
+#etra info
 
 def genPswd():
     length = ps_length.get()
