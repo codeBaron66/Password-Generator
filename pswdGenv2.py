@@ -12,7 +12,6 @@ window.geometry("520x400")
 window.option_add("*Font", "Arial 18")
 ps_length = tk.IntVar()
 specChars = tk.IntVar()
-#etra infokklklkluiiiiiiiiiiiii
 
 def genPswd():
     length = ps_length.get()
@@ -60,16 +59,12 @@ def savedPass():
     newWindow = Toplevel(window)
     newWindow.title("Saved Passwords")
     newWindow.geometry("500x500")
-    scroll = tk.Scrollbar(newWindow, orient=VERTICAL)
-    scroll.pack()
     newWindow.option_add("*Font", "Arial 18")
     textFile = open("saved.txt", 'r')
     text = textFile.read()
     textFile.close()
-    nameLabel = tk.Label(newWindow, bg="white", padx=15, pady=10, text=f"{text}", command=scroll.set)
-    nameLabel.config(yscrollcommand=scroll.set)
+    nameLabel = tk.Label(newWindow, bg="white", padx=15, pady=10, text=f"{text}")
     nameLabel.pack()
-    scroll.config( command = nameLabel.yview)
     def kill():
         # newWindow.bind('<Return>', kill)
         newWindow.destroy()
