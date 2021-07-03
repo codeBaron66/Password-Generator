@@ -68,8 +68,12 @@ def savedPass():
     textFile = open("saved.txt", 'r')
     text = textFile.read()
     textFile.close()
-    nameLabel = tk.Label(newWindow, bg="white", padx=15, pady=10, text=f"{text}")
+    nameLabel = tk.Label(newWindow, bg="white", text=f"{text}")
     nameLabel.pack()
+    # sb = tk.Scrollbar(newWindow, orient=VERTICAL)
+    # sb.config(command=newWindow.yview)
+    # sb.pack(side=RIGHT,fill=Y)
+    # nameLabel.config(yscrollcommand=sb.set)
     def kill(bind):
         newWindow.destroy()
     closeBtn = tk.Button(newWindow, text="Close", padx=30, pady=10, command=kill)
