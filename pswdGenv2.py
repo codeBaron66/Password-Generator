@@ -1,3 +1,8 @@
+# Encrypt passwords
+# add scroll
+# seperate code into Files 
+# package up app 
+
 import tkinter as tk
 from tkinter import *
 from random import *
@@ -8,7 +13,7 @@ from typing_extensions import IntVar
 
 window = tk.Tk()
 window.title("Password Generator")
-window.geometry("520x400")
+window.geometry("520x500")
 window.option_add("*Font", "Arial 18")
 ps_length = tk.IntVar()
 specChars = tk.IntVar()
@@ -39,16 +44,16 @@ def savePass():
     entry.focus_set()
     entry.pack()
     global kill
-    def kill():
+    def kill(bind):
         global log
         log = entry.get()
         textFile = open("saved.txt", 'a')
         textFile.write(f"\n" + log + ": " + newPass)
         textFile.close()
         newWindow.destroy()
-    # newWindow.bind('<Return>', kill)
     okBtn = tk.Button(newWindow, text="Save", padx=30, pady=10, command=kill)
     okBtn.pack()
+    entry.bind('<Return>', kill)
 
 def copy():
     window.clipboard_clear()
@@ -65,11 +70,11 @@ def savedPass():
     textFile.close()
     nameLabel = tk.Label(newWindow, bg="white", padx=15, pady=10, text=f"{text}")
     nameLabel.pack()
-    def kill():
-        # newWindow.bind('<Return>', kill)
+    def kill(bind):
         newWindow.destroy()
     closeBtn = tk.Button(newWindow, text="Close", padx=30, pady=10, command=kill)
     closeBtn.pack()
+    newWindow.bind('<Return>', kill)
 
 m = Menu(window, tearoff = 0)
 m.add_command(label ="Copy", command=copy)
