@@ -3,6 +3,7 @@
 # seperate code into Files 
 # package up app 
 
+from hashlib import new
 import tkinter as tk
 from tkinter import *
 from random import *
@@ -44,7 +45,7 @@ def savePass():
     entry.focus_set()
     entry.pack()
     global kill
-    def kill(bind):
+    def kill():
         global log
         log = entry.get()
         textFile = open("saved.txt", 'a')
@@ -53,7 +54,6 @@ def savePass():
         newWindow.destroy()
     okBtn = tk.Button(newWindow, text="Save", padx=30, pady=10, command=kill)
     okBtn.pack()
-    entry.bind('<Return>', kill)
 
 def copy():
     window.clipboard_clear()
@@ -70,15 +70,10 @@ def savedPass():
     textFile.close()
     nameLabel = tk.Label(newWindow, bg="white", text=f"{text}")
     nameLabel.pack()
-    # sb = tk.Scrollbar(newWindow, orient=VERTICAL)
-    # sb.config(command=newWindow.yview)
-    # sb.pack(side=RIGHT,fill=Y)
-    # nameLabel.config(yscrollcommand=sb.set)
-    def kill(bind):
+    def kill():
         newWindow.destroy()
     closeBtn = tk.Button(newWindow, text="Close", padx=30, pady=10, command=kill)
     closeBtn.pack()
-    newWindow.bind('<Return>', kill)
 
 m = Menu(window, tearoff = 0)
 m.add_command(label ="Copy", command=copy)
@@ -88,8 +83,6 @@ def do_popup(event):
     finally:
         m.grab_release()
 
-# labelBlank = tk.Label(window, bg="red", text="")
-# labelBlank.pack()
 label = tk.Label(window, bg="white", padx=15, pady=10, text="")
 label.bind("<Button-3>", do_popup)
 label.pack(side=TOP, pady=20)
@@ -106,5 +99,4 @@ saveBtn.pack()
 savedBtn = tk.Button(window, text="Saved", padx=30, pady=10, command=savedPass)
 savedBtn.pack()
 
-# labelBlank.grid(row=0, column=10)
 window.mainloop()
